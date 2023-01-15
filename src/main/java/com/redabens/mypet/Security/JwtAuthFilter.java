@@ -57,9 +57,6 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
                 UserDetails userDetails = userDetailsService.loadUserByUsername(userEmail);
                 System.out.println("userDetails from doFilterInternal : ");
                 System.out.println(userDetails);
-
-//            UserDetails userDetails = (UserDetails) userService.find_user_by_email(userEmail);
-
                 if(jwtUtils.isTokenValid(jwtToken, userDetails))
                 {
                     final UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =

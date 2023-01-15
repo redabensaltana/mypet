@@ -2,11 +2,15 @@ package com.redabens.mypet.Entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "comments", schema = "public", catalog = "mypet")
-@Data
+//@Data
+@Getter
+@Setter
 @NoArgsConstructor
 
 public class Comment {

@@ -42,9 +42,9 @@ public class SecurityConfig {
         httpSecurity
                 .csrf().disable()
                 .authorizeHttpRequests()
-                //endpoints authorized without authentication
                 .requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers("/api/pet/**").authenticated()
+                .requestMatchers("/api/post/**").authenticated()
+                .requestMatchers("/api/comment/**").authenticated()
                 //endpoint
 //                .requestMatchers("/api/v1/admin/**").hasAnyAuthority("ADMIN")
 //                .anyRequest().authenticated()

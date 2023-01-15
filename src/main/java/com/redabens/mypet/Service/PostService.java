@@ -48,4 +48,10 @@ public class PostService {
         postRepo.deleteById(id);
     }
 
+    public void adopt(int id, int userId) {
+        Post post = postRepo.findById(id).get();
+        post.setStatus(userId);
+        postRepo.save(post);
+    }
+
 }

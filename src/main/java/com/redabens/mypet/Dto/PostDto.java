@@ -16,7 +16,7 @@ public class PostDto {
     private String description;
     private String city;
     private Float price;
-    private Boolean status;
+    private int status;
     private int userId;
 //    private String photo;
 }
