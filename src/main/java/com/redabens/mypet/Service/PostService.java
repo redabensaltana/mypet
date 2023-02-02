@@ -26,7 +26,14 @@ public class PostService {
 
     public Post savePost(PostDto postDto) {
         Post post = new Post();
-        BeanUtils.copyProperties(postDto, post);
+//        BeanUtils.copyProperties(postDto, post);
+        post.setTitle(postDto.getTitle());
+        post.setType(postDto.getType());
+        post.setAge(postDto.getAge());
+        post.setDuration(postDto.getDuration());
+        post.setDescription(postDto.getDescription());
+        post.setCity(postDto.getCity());
+        post.setPrice(postDto.getPrice());
         post.setUser(userService.getUserById(postDto.getUserId()));
         return postRepo.save(post);
     }

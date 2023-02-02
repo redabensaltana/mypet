@@ -30,18 +30,21 @@ public class AuthService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    public String register(UserDto userDto){
+    public Map register(UserDto userDto){
         User user = new User();
+        Map map = new HashMap();
         user.setUsername(userDto.getUsername());
         user.setEmail(userDto.getEmail());
         user.setAddress(userDto.getAddress());
         user.setNumberPhone(userDto.getNumberPhone());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        userRepo.save(user);
-        return jwtUtils.generateToken(userDetailsService.loadUserByUsername(user.getEmail()));
+        User u = userRepo.save(user);
+        map.put("token",jwtUtils.generateToken(userDetailsService.loadUserByUsername(user.getEmail())));
+        map.put("userId",u.getId());
+        return map;
     }
 
-    public String authenticate(UserDto userDto){
+    public Map authenticate(UserDto userDto){
        authenticationManager.authenticate(
                new UsernamePasswordAuthenticationToken(
                        userDto.getEmail(),
@@ -49,6 +52,9 @@ public class AuthService {
                )
        );
        User user = userRepo.findUserByEmail(userDto.getEmail());
-        return jwtUtils.generateToken(userDetailsService.loadUserByUsername(user.getEmail()));
+       Map map = new HashMap();
+       map.put("token",jwtUtils.generateToken(userDetailsService.loadUserByUsername(user.getEmail())));
+       map.put("userId",user.getId());
+        return map;
     }
 }
